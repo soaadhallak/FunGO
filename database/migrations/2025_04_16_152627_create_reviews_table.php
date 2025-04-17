@@ -19,8 +19,8 @@ return new class extends Migration
             $table->text('comment');
             $table->tinyInteger('rating');
             $table->foreignIdFor(Place::class)->constrained()->onDelete('cascade');
-            $table->foreignIdFor(ActivityType::class)->constrained()->onDelete('set null');
-            $table->foreignIdFor(User::class)->constrained()->onDelete('set null');
+            $table->foreignIdFor(ActivityType::class)->nullable()->constrained()->onDelete('cascade');
+            $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ class LocationFactory extends Factory
         return [
             'user_id'=>$userId->random(),
             'latitude'=>fake()->latitude(25.3,38.5),
-            'longitudr'=>fake()->longitude(25.6,30.2),
+            'longitude'=>fake()->longitude(25.6,30.2),
 
         ];
     }

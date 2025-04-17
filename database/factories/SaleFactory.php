@@ -20,8 +20,8 @@ class SaleFactory extends Factory
         $placeId=Place::pluck('id');
         return [
             'title'=>fake()->title(),
-            'date_start'=>fake()->now(),
-            'deadline_at'=>now()->addDays(rand(1,30))->format('y-m-d'),
+            'date_start' => fake()->dateTimeBetween('-3 days', '+3 days')->format('Y-m-d'),
+            'date_end' => fake()->dateTimeBetween('+4 days', '+10 days')->format('Y-m-d'),
             'place_id'=>$placeId->random(),
         ];
     }
