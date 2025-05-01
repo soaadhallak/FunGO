@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePlaceRequest extends FormRequest
+class GetSearchItemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class UpdatePlaceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'search'=>['required','string','max:60'],
         ];
     }
 }

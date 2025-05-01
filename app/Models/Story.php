@@ -17,4 +17,8 @@ class Story extends Model implements HasMedia
     public function place(){
         return $this->belongsTo(Place::class);
     }
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('stories')->useDisk('stories');
+    }
 }
