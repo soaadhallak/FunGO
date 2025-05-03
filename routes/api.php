@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\V1\PlaceController;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,9 @@ Route::prefix('/places')->group(function(){
 
     //special updae route
     Route::post('filter', [PlaceController::class, 'filter']);
-    
+
     Route::apiResource('/',PlaceController::class);
 });
+    Route::post('register',[UserController::class,'register']);
+    Route::post('login',[UserController::class,'login']);
+    Route::middleware('auth:sanctum')->post('logout',[UserController::class,'logout']);
