@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\V1\DeviceTokenController;
+use App\Http\Controllers\V1\UserController;
 use App\Http\Controllers\V1\PlaceController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -24,6 +25,9 @@ Route::prefix('/places')->group(function(){
 
     Route::apiResource('/',PlaceController::class);
 });
+  //route for authentication
     Route::post('register',[UserController::class,'register']);
     Route::post('login',[UserController::class,'login']);
     Route::middleware('auth:sanctum')->post('logout',[UserController::class,'logout']);
+    //route to register device token
+    Route::post('/device-token',DeviceTokenController::class);
