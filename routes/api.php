@@ -25,6 +25,7 @@ Route::prefix('/places')->group(function(){
 
     Route::apiResource('/',PlaceController::class);
 });
+
   //route for authentication
     Route::post('register',[UserController::class,'register']);
     Route::post('login',[UserController::class,'login']);

@@ -60,4 +60,7 @@ class User extends Authenticatable
     public function stories(){
         return $this->hasMany(Story::class);
     }
+    public function deviceTokens(){
+        return $this->hasMany(DeviceToken::class);
+    }
 }

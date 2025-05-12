@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,14 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('places', function (Blueprint $table) {
+        Schema::create('device_tokens', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->Text('address');
-            $table->longText('description');
-            $table->decimal('latitude',10,6);
-            $table->decimal('longitude',10,6);
-            $table->string('governorate');
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
+            $table->string('token')->unique();
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('places');
+        Schema::dropIfExists('device_tokens');
     }
 };

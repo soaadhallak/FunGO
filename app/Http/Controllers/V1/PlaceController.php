@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers\V1;
 
+use App\Events\PlaceCreated;
 use App\Filters\PlacesFilter;
-use App\Helpers\ApiResponce;
 use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\FilterRequest;
 use App\Http\Requests\V1\GetSearchItemRequest;
 use App\Http\Requests\v1\StorePlaceRequest;
 use App\Http\Requests\V1\UpdatePlaceRequest;
-use App\Http\Requests\V1\UpdatPlaceRequest;
 use App\Http\Resources\PlaceForShowResource;
 use App\Http\Resources\PlacePaginationResource;
 use App\Http\Resources\PlaceResource;
 use App\Models\Place;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+
 
 class PlaceController extends Controller
 {
@@ -43,6 +42,12 @@ class PlaceController extends Controller
                 $fileAdder->toMediaCollection('places');
             });
         }
+        event(new PlaceCreated(
+            $place,
+            "add new place",
+            "add new place",
+            ['place_id'=>$place->id]
+        ));
         return ApiResponse::getResponse(new PlaceResource($place->load(['activities','media'])),201,"تم إنشاء المكان");
           
     }
